@@ -86,6 +86,7 @@ add_env 'export PATH="$HOME/.local/bin:$PATH"'
 add_env "export HF_HOME=$WORKSPACE/.hf"
 add_env "export HUGGINGFACE_HUB_CACHE=$WORKSPACE/.hf/hub"
 add_env "export VLLM_OMNI_HOME=$REPO_DIR"
+add_env "export IS_SANDBOX=1"
 mkdir -p "$WORKSPACE/.hf/hub"
 export HF_HOME="$WORKSPACE/.hf"
 export HUGGINGFACE_HUB_CACHE="$WORKSPACE/.hf/hub"
