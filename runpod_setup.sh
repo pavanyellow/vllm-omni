@@ -61,6 +61,21 @@ fi
 export PATH="$HOME/.local/bin:$PATH"
 claude --version || echo "(Claude installed — open a new shell or run: export PATH=\$HOME/.local/bin:\$PATH)"
 
+# ── Node.js (needed for Codex CLI) ───────────────────────────────────────────
+if ! command -v node &>/dev/null || [ "$(node -v 2>/dev/null | sed 's/v//;s/\..*//')" -lt 22 ]; then
+    echo "==> Installing Node.js 22"
+    curl -fsSL https://deb.nodesource.com/setup_22.x | bash -
+    apt-get install -y -qq nodejs >/dev/null
+fi
+node -v
+
+# ── Codex CLI ────────────────────────────────────────────────────────────────
+if ! command -v codex &>/dev/null; then
+    echo "==> Installing Codex CLI"
+    npm install -g @openai/codex
+fi
+codex --version || true
+
 # ── uv (fast Python package manager) ─────────────────────────────────────────
 if ! command -v uv &>/dev/null; then
     echo "==> Installing uv"
@@ -88,6 +103,7 @@ add_env "export HUGGINGFACE_HUB_CACHE=$WORKSPACE/.hf/hub"
 add_env "export VLLM_OMNI_HOME=$REPO_DIR"
 add_env "export IS_SANDBOX=1"
 add_env "alias claude='claude --dangerously-skip-permissions'"
+add_env "alias codex='codex --yolo'"
 mkdir -p "$WORKSPACE/.hf/hub"
 export HF_HOME="$WORKSPACE/.hf"
 export HUGGINGFACE_HUB_CACHE="$WORKSPACE/.hf/hub"
