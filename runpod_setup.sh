@@ -2,7 +2,7 @@
 # RunPod setup for vllm-omni OmniVoice optimization (H100 SXM).
 #
 # Usage on a fresh RunPod pod:
-#   wget https://raw.githubusercontent.com/<your-fork>/vllm-omni/main/runpod_setup.sh
+#   wget https://raw.githubusercontent.com/pavanyellow/vllm-omni/main/runpod_setup.sh
 #   bash runpod_setup.sh
 #
 # After it finishes:
